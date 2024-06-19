@@ -1,7 +1,5 @@
 import torch
-def get_scale(scale,sigmas,sigmin,sigmax):
-    current = (1 + ((sigmas - sigmax) * (0 - 1)) / (sigmin - sigmax)) ** .5 # forgetting the global parenthesis made me generate a image looking like a negative
-    return scale * current + (1 - current)
+
 class uncondZeroNode:
     @classmethod
     def INPUT_TYPES(s):
@@ -23,11 +21,9 @@ class uncondZeroNode:
             x_orig = args["input"]
             x_orig -= x_orig.mean()
             cond   -= cond.mean()
-            current_scale = get_scale(scale,args['sigma'][0].item(), sigmin, sigmax)
-            return x_orig - cond / cond.std() ** .5 * current_scale
+            return x_orig - (cond / cond.std() ** .5) * scale
         
         new_scale = 1 / (model.model.latent_format.scale_factor * 8)
-
         #Taken and adapted from comfy_extras/nodes_model_advanced
         def rescale_cfg(args):
             x_orig = args["input"]
@@ -36,8 +32,7 @@ class uncondZeroNode:
             cond = args["cond_denoised"]
             cond -= cond.mean()
 
-            current_scale = get_scale(scale,args['sigma'][0].item(), sigmin, sigmax)
-            cond = x_orig - cond / cond.std() ** .5 * current_scale
+            cond = x_orig - (cond / cond.std() ** .5) * scale
 
             sigma = args["sigma"]
             sigma = sigma.view(sigma.shape[:1] + (1,) * (cond.ndim - 1))
