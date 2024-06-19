@@ -14,8 +14,6 @@ class uncondZeroNode:
     CATEGORY = "model_patches"
 
     def patch(self, model, scale, method):
-        sigmin = model.model.model_sampling.sigma(model.model.model_sampling.timestep(model.model.model_sampling.sigma_min)).item()
-        sigmax = model.model.model_sampling.sigma(model.model.model_sampling.timestep(model.model.model_sampling.sigma_max)).item()
         def uncond_zero(args):
             cond   = args["cond_denoised"]
             x_orig = args["input"]
