@@ -3,6 +3,8 @@ Allows to sample without generating any uncond with Stable Diffusion!
 
 This **doubles the generation speed** while removing the control provided by the negative prompt. Yet still preserves image quality.
 
+Subtracting the mean value of the latent space and the positive prediction as well as using an adapted scale is basically what allows this. Additionally, using a "good model" (base models seems to be terrible in these conditions) as well as a recent sampler such as dpm++2m sde or quite the majority of [Clybius Extra-Samplers](https://github.com/Clybius/ComfyUI-Extra-Samplers) helps a lot!
+
 Note: This is a work in progress and may go through some changes!
 
 ![tensorrt_workflow](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/b76b02bf-2634-4206-8407-8637a36b04ed)
