@@ -37,7 +37,7 @@ class uncondZeroNode:
             return result
 
 
-        new_scale = 1 / (model.model.latent_format.scale_factor * 8)
+        new_scale = 1 / (model.model.latent_format.scale_factor * 8) # Anything below this value gave visible artifacts.
 
         #Taken and modified from comfy_extras/nodes_model_advanced
         def rescale_cfg(args):
