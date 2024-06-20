@@ -17,9 +17,9 @@ class uncondZeroNode:
         def uncond_zero(args):
             cond   = args["cond_denoised"]
             x_orig = args["input"]
-            x_orig -= x_orig.mean()
+            x_orig -= x_orig.mean() # the main trick to not get a mess is simply to subtract the mean values. I guess SD likes it gaussian AF
             cond   -= cond.mean()
-            return x_orig - cond / cond.std() ** .5 * scale # the square root of the std is simply an ever changing scale that fits the bill.
+            return x_orig - cond / cond.std() ** .5 * scale # the square root of the std is simply an ever changing scale that fits the bill. The only true condition is to have it not above one near the end.
 
         def uncond_zero_v2(args):
             cond   = args["cond_denoised"]
