@@ -47,7 +47,7 @@ class uncondZeroNode:
             cond = args["cond_denoised"]
             cond -= cond.mean()
 
-            cond = x_orig - cond / cond.std() ** .5
+            cond = x_orig - cond / cond.std() ** .5 * min(scale, 1)
 
             sigma = args["sigma"]
             sigma = sigma.view(sigma.shape[:1] + (1,) * (cond.ndim - 1))
@@ -58,7 +58,7 @@ class uncondZeroNode:
             cond = ((x - (x_orig - cond)) * (sigma ** 2 + 1.0) ** 0.5) / (sigma)
 
             #rescalecfg
-            x_cfg = uncond + new_scale * scale * (cond - uncond)
+            x_cfg = uncond + new_scale * max(scale, 1) * (cond - uncond)
             ro_pos = torch.std(cond, dim=(1,2,3), keepdim=True)
             ro_cfg = torch.std(x_cfg, dim=(1,2,3), keepdim=True)
 
