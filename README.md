@@ -3,6 +3,7 @@ Allows to sample without generating any uncond with Stable Diffusion!
 
 This **doubles the generation speed** while removing the control provided by the negative prompt. Yet still preserves image quality.
 
+Note: This is a work in progress and may go through some changes!
 
 ![tensorrt_workflow](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/b76b02bf-2634-4206-8407-8637a36b04ed)
 
