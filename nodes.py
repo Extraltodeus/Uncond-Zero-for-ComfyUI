@@ -19,7 +19,7 @@ class uncondZeroNode:
             x_orig = args["input"]
             x_orig -= x_orig.mean()
             cond   -= cond.mean()
-            return x_orig - cond / cond.std() ** .5 * scale
+            return x_orig - cond / cond.std() ** .5 * scale # the square root of the std is simply an ever changing scale that fits the bill.
 
         def uncond_zero_v2(args):
             cond   = args["cond_denoised"]
