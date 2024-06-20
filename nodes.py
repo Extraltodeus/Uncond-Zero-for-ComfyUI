@@ -37,7 +37,8 @@ class uncondZeroNode:
             return result
 
 
-        new_scale = 1 / (model.model.latent_format.scale_factor * 8) # Anything below this value gave visible artifacts.
+        # new_scale = 1 / (model.model.latent_format.scale_factor * 8) # Anything below this value gave visible artifacts.
+        # alright it was around 0.95 with SDXL and 1 is just better. SD 1.x latent scale gives a lower value which ended in bad results.
 
         #Taken and modified from comfy_extras/nodes_model_advanced
         def rescale_cfg(args):
@@ -58,7 +59,7 @@ class uncondZeroNode:
             cond = ((x - (x_orig - cond)) * (sigma ** 2 + 1.0) ** 0.5) / (sigma)
 
             #rescalecfg
-            x_cfg = uncond + new_scale * max(scale, 1) * (cond - uncond)
+            x_cfg = uncond + max(scale, 1) * (cond - uncond)
             ro_pos = torch.std(cond, dim=(1,2,3), keepdim=True)
             ro_cfg = torch.std(x_cfg, dim=(1,2,3), keepdim=True)
 
