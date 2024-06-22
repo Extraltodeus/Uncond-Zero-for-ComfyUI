@@ -9,6 +9,6 @@ Repository = "https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = ""
+PublisherId = "extraltodeus"
 DisplayName = "Uncond-Zero-for-ComfyUI"
 Icon = ""
