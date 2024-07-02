@@ -2,7 +2,7 @@
 
 Allows to sample without generating any negative prediction with Stable Diffusion!
 
-EDIT: WIP / update
+EDIT: WIP / update / Come back later (code is operational if you're curious)
 
 # How to use:
 
