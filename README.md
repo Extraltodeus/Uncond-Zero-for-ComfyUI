@@ -74,7 +74,7 @@ While I do not have seen any since the latest updates, tensor rt would sometimes
 
 (all images are workflows)
 
-## Nothing versus everything (SDXL/tensorrt):
+## Nothing versus everything (SDXL/tensorrt), same generation speed:
 
 ![07851UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/2e376064-96b7-4803-92e8-50baf59d6a1c)![07847UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/596533a2-2e81-41ae-8100-100d06727f3c)
 
