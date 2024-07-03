@@ -61,7 +61,7 @@ The issue is that if you set it at 1, any prompt being longer will make it spam 
 
 If you set it at more than one during the creation and use a shorter conditioning it will generate noise while spamming the CLI.
 
-So what this node does is simply allow you to set the desired context length. If you conditioning is longer it will crop it. If it is shorter it will concatenate an empty one until the length is reached.
+So what this node does is simply allow you to set the desired context length. If your conditioning is longer it will crop it. If it is shorter it will concatenate an empty one until the length is reached.
 
 ## interrupt on NaN
 
