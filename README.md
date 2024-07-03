@@ -31,7 +31,8 @@ To connect like a normal model patch. Generally right after the model loader.
 
 - Scale: basically similar to the CFG scale. I implemented a logic inspired from my other node [AutomaticCFG](https://github.com/Extraltodeus/ComfyUI-AutomaticCFG) with a few modifications so to adapt it to not using any negative.
 - "pre_fix": Uses the previous step to modify the current one. This is the main trick to get a better quality / sharpness.
-- "pre_scale": How strong will the effect be. Recommanded: 1 for sde/ancestral samplers, 1.5 if you want to use something like dpmpp2m.
+- "pre_scale": How strong will the effect be.
+  - Recommanded: 1 for sde/ancestral samplers, 1.5 if you want to use something like dpmpp2m.
 
 ## Conditioning combine positive and negative
 
