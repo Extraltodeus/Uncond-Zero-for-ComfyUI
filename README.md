@@ -125,7 +125,7 @@ To a smiling average dude:
 
 ![07834UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/b6049233-01c7-4905-a841-1f44861cc040)
 
-To this very successful businessman!
+To this very successful businessman with five fingers!
 
 ![07841UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/71e88533-7e7c-43de-98a5-43f48cf58035)
 
