@@ -83,9 +83,6 @@ While I do not have seen any since the latest updates, tensor rt would sometimes
 
 ![07918UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/f9160e85-2f3c-404f-a7ba-a1ba950d82a4)![07917UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/4d4e5088-cc2c-4b07-9c02-acf4c2392f98)![07916UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/ea139f23-7e85-4013-9613-10d6db5cfba6)![07913UI_00001_ - Copie](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/14ddacde-aedb-429c-bdb5-f46bbb28816f)
 
-Also just to show the difference in sharpness, everything except the "pre_fix":
-
-![07919UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/a9508b05-e06e-4956-840b-77567b9b0c10)
 
 ## Negative prompt integration example:
 
