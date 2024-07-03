@@ -10,8 +10,16 @@ I did this as a personnal challenge: How good can a generation be without a nega
 - Nothing making the sampling noticeably slower than if using euler with a CFG scale at 1. ✔
 - Should work with "confusing prompts" which tends to make a mess like "macro shot of a glowing forest spirit,leafy appendages outlined with veins of light,eyes a deep,enigmatic glow amidst the foliage.," ✔
 - Should allow to use a negative prompt despite not generating a negative prediction (Shout out to [Clybius](https://github.com/Clybius) who helped me getting started with the maths!) ✔
+- Should work with max 12 steps ✔
 
 The goal being to enhance the sampling and take even more advantages of other acceleration methods like the tensor RT engines.
+
+With an RTX4070:
+
+SDXL 1024x1024 / tensor rt: **9.67it/s**
+
+LCM SD 1.5 512x512 / tensor rt: **37.50it/s**
+
 
 ### ⚠ Examples will be at the bottom ⚠
 
@@ -65,13 +73,45 @@ So what this node does is simply allow you to set the desired context length. If
 
 While I do not have seen any since the latest updates, tensor rt would sometimes throw a random black image. What this node does is that it cancels the sampling if any invalid value is detected. Also useful if you want to test Uncond Zero with bogus scales. The toggle will replace these values by 0 instead of cancelling.
 
-# Examples (WIP)
+# Examples (all images are workflows)
 
+### Nothing versus everything (SDXL/tensorrt):
+
+![07851UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/2e376064-96b7-4803-92e8-50baf59d6a1c)![07847UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/596533a2-2e81-41ae-8100-100d06727f3c)
+
+### SD 1.5 (a custom merge) with LCM in 3 steps. Vanilla / Only with the prediction scaled / "pre_fix" Enabled added / Negative prompt added:
+
+![07918UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/f9160e85-2f3c-404f-a7ba-a1ba950d82a4)![07917UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/4d4e5088-cc2c-4b07-9c02-acf4c2392f98)![07916UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/ea139f23-7e85-4013-9613-10d6db5cfba6)![07913UI_00001_ - Copie](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/14ddacde-aedb-429c-bdb5-f46bbb28816f)
+
+Also just to show the difference in sharpness, everything except the "pre_fix":
+
+![07919UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/a9508b05-e06e-4956-840b-77567b9b0c10)
+
+### skill issue
+
+You too! Discover how this man went from a bland face
+
+![07922UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/dc6f6f09-29f2-47f7-babc-de7159704240)
+
+To a smiling average dude:
+
+![07834UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/b6049233-01c7-4905-a841-1f44861cc040)
+
+To this very successful businessman!
+
+![07841UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/71e88533-7e7c-43de-98a5-43f48cf58035)
+
+All is the same seed. First image is "a man with a sad face" without any modification.
+
+The second is with all the modification enabled but the prompt is only "a smiling man".
+
+The third one is "a smiling man wearing a suit, hiding behind a tree, hdr quality".
+
+Or in short: a better prompt will actually give you a better result. While it may seem obvious, in general while using a negative prediction it makes it good even when the prompt is simple. While without it, it does not. If anything that is for me the biggest (if big) caveat as I am not allowed to be as lazy as I like and forces me to add at least like two or three words in my prompts to make them better sometimes 😪.
 
 ## Tips:
 
-- Nodes like the self-attention guidance making use of the uncond will not work.
-- Combined with Tensort_RT you will reach new heights in terms of speed!
-- I wouldn't be against [some support!](https://www.patreon.com/extraltodeus) :)
+- Nodes like the self-attention guidance making use of the uncond will not work. Perturbed attention will (but not yet with tensor rt btw).
+- I wouldn't be against [SOME support!](https://www.patreon.com/extraltodeus) :)
 
 
