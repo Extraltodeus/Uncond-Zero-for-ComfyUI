@@ -77,7 +77,9 @@ While I do not have seen any since the latest updates, tensor rt would sometimes
 
 ![07851UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/2e376064-96b7-4803-92e8-50baf59d6a1c)![07847UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/596533a2-2e81-41ae-8100-100d06727f3c)
 
-## SD 1.5 (merge) with LCM in 3 steps. Vanilla / Only with the prediction scaled / "pre_fix" Enabled added / Negative prompt added:
+## SD 1.5 (merge) with LCM in 3 steps.
+
+### Vanilla / Only with the prediction scaled / "pre_fix" Enabled added / Negative prompt added:
 
 ![07918UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/f9160e85-2f3c-404f-a7ba-a1ba950d82a4)![07917UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/4d4e5088-cc2c-4b07-9c02-acf4c2392f98)![07916UI_00001_](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/ea139f23-7e85-4013-9613-10d6db5cfba6)![07913UI_00001_ - Copie](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/14ddacde-aedb-429c-bdb5-f46bbb28816f)
 
@@ -115,7 +117,7 @@ Water, autumn:
 ![combined_image](https://github.com/Extraltodeus/Uncond-Zero-for-ComfyUI/assets/15731540/da973ee9-3da1-4447-9efd-4265bfe7a813)
 
 
-## skill issue
+## "skill issue"
 
 You too! Discover how this man went from a bland face
 
