@@ -138,7 +138,7 @@ Or in short: a better prompt will actually give you a better result. While it ma
 
 ## Tips:
 
-- Nodes like the self-attention guidance making use of the uncond will not work. Perturbed attention will (but not yet with tensor rt btw).
+- You can use my [temperature node](https://github.com/Extraltodeus/Stable-Diffusion-temperature-settings) to change the CLIP temperature to lower/higher, it will greatly change the output!
 - I wouldn't be against [SOME support!](https://www.patreon.com/extraltodeus) :)
 
 
