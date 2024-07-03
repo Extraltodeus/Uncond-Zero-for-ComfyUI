@@ -57,9 +57,7 @@ Here, "context_opt" set at 4:
 
 This is how long your context will be. Meaning, how many times 77 tokens you can use.
 
-The issue is that if you set it at 1, any prompt being longer will make it:
-- spam your CLI
-- ignore it
+The issue is that if you set it at 1, any prompt being longer will make it spam your CLI and ignore the extra.
 
 If you set it at more than one during the creation and use a shorter conditioning it will generate noise while spamming the CLI.
 
