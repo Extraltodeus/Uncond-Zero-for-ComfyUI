@@ -1,5 +1,3 @@
-# WIP / Come back later
-
 # Uncond-Zero-for-ComfyUI
 
 Allows to sample without generating any negative prediction with Stable Diffusion!
