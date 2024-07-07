@@ -1,0 +1,624 @@
+{
+  "last_node_id": 22,
+  "last_link_id": 38,
+  "nodes": [
+    {
+      "id": 12,
+      "type": "VAEDecodeAudio",
+      "pos": [
+        1200,
+        96
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 13
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 14,
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            15,
+            27
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecodeAudio"
+      }
+    },
+    {
+      "id": 13,
+      "type": "SaveAudio",
+      "pos": [
+        1440,
+        100
+      ],
+      "size": {
+        "0": 355.22216796875,
+        "1": 100
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 15
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveAudio"
+      },
+      "widgets_values": [
+        "audio/ComfyUI",
+        null
+      ]
+    },
+    {
+      "id": 10,
+      "type": "CLIPLoader",
+      "pos": [
+        0,
+        96
+      ],
+      "size": {
+        "0": 335.6534118652344,
+        "1": 82
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            25,
+            26,
+            35
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "t5_base_audio.safetensors",
+        "stable_audio"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        0,
+        240
+      ],
+      "size": {
+        "0": 336,
+        "1": 98
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            31
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            14
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "stable_audio.safetensors"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncode",
+      "pos": [
+        384,
+        96
+      ],
+      "size": {
+        "0": 432,
+        "1": 144
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 25
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            33
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "heaven church electronic dance music"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 11,
+      "type": "EmptyLatentAudio",
+      "pos": [
+        600,
+        660
+      ],
+      "size": {
+        "0": 240,
+        "1": 58
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            12
+          ],
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentAudio"
+      },
+      "widgets_values": [
+        47.6
+      ]
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [
+        380,
+        280
+      ],
+      "size": {
+        "0": 432,
+        "1": 144
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 26
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            34
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "bad quality, crackling, break"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 22,
+      "type": "CLIPTextEncode",
+      "pos": [
+        380,
+        460
+      ],
+      "size": {
+        "0": 432,
+        "1": 144
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 35
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            36
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "color": "#44a3aa",
+      "bgcolor": "#58b7be"
+    },
+    {
+      "id": 21,
+      "type": "Conditioning combine positive and negative",
+      "pos": [
+        840,
+        -60
+      ],
+      "size": {
+        "0": 352.79998779296875,
+        "1": 98
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive_conditioning",
+          "type": "CONDITIONING",
+          "link": 33
+        },
+        {
+          "name": "negative_conditioning",
+          "type": "CONDITIONING",
+          "link": 34
+        },
+        {
+          "name": "empty_conditioning",
+          "type": "CONDITIONING",
+          "link": 36
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            37
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            38
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Conditioning combine positive and negative"
+      },
+      "widgets_values": [
+        0.2
+      ]
+    },
+    {
+      "id": 18,
+      "type": "PreviewAudio",
+      "pos": [
+        1440,
+        260
+      ],
+      "size": {
+        "0": 413.8558044433594,
+        "1": 76
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 27
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": [
+        null
+      ]
+    },
+    {
+      "id": 20,
+      "type": "Uncond Zero",
+      "pos": [
+        520,
+        -80
+      ],
+      "size": {
+        "0": 210,
+        "1": 106
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 31
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            32
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Uncond Zero"
+      },
+      "widgets_values": [
+        1.25,
+        true,
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "type": "KSampler",
+      "pos": [
+        864,
+        96
+      ],
+      "size": {
+        "0": 315,
+        "1": 262
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 32
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 37
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 38
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 12,
+          "slot_index": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            13
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        764903445951219,
+        "randomize",
+        20,
+        1,
+        "dpmpp_2m_sde_gpu",
+        "exponential",
+        1
+      ]
+    }
+  ],
+  "links": [
+    [
+      12,
+      11,
+      0,
+      3,
+      3,
+      "LATENT"
+    ],
+    [
+      13,
+      3,
+      0,
+      12,
+      0,
+      "LATENT"
+    ],
+    [
+      14,
+      4,
+      2,
+      12,
+      1,
+      "VAE"
+    ],
+    [
+      15,
+      12,
+      0,
+      13,
+      0,
+      "AUDIO"
+    ],
+    [
+      25,
+      10,
+      0,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      26,
+      10,
+      0,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      27,
+      12,
+      0,
+      18,
+      0,
+      "AUDIO"
+    ],
+    [
+      31,
+      4,
+      0,
+      20,
+      0,
+      "MODEL"
+    ],
+    [
+      32,
+      20,
+      0,
+      3,
+      0,
+      "MODEL"
+    ],
+    [
+      33,
+      6,
+      0,
+      21,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      34,
+      7,
+      0,
+      21,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      35,
+      10,
+      0,
+      22,
+      0,
+      "CLIP"
+    ],
+    [
+      36,
+      22,
+      0,
+      21,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      37,
+      21,
+      0,
+      3,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      38,
+      21,
+      1,
+      3,
+      2,
+      "CONDITIONING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
