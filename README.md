@@ -38,7 +38,7 @@ IF THE CFG SCALE IS AT 1 OR IF THERE IS NOT NEGATIVE (using the ConditioningSetT
 - does what is described above
   
 ELSE:
-- Acts like the Automatic CFG (no monkeypatching this time)
+- Acts like the Automatic CFG
 
 
 ## Conditioning combine positive and negative
