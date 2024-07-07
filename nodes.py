@@ -1,6 +1,7 @@
 import torch
 from copy import deepcopy
 from comfy.model_management import interrupt_current_processing
+from math import floor
 
 selfnorm = lambda x: x / x.norm()
 
@@ -49,18 +50,47 @@ class uncondZeroNode:
     def patch(self, model, scale, pre_fix, pre_scale, exp_fix=False, exp_scale=1):
         model_sampling = model.model.model_sampling
         sigma_max = model_sampling.sigma(model_sampling.timestep(model_sampling.sigma_max)).item()
-        prev_cond = None
+        prev_cond   = None
+        prev_uncond = None
 
+        def cfg_or_zero_wrapper(args):
+            nonlocal prev_cond, prev_uncond
+            if args["sigma"][0].item() > (sigma_max - 1):
+                prev_cond   = None
+                prev_uncond = None
+            if torch.any(args['uncond_denoised']):
+                return automatic_cfg(args)
+            return uncond_zero(args)
+
+        def automatic_cfg(args):
+            nonlocal prev_cond, prev_uncond
+
+            cond   = args["cond_denoised"]
+            uncond = args["uncond_denoised"]
+            x_orig = args["input"]
+            cond_scale = args["cond_scale"]
+            result = torch.zeros_like(x_orig)
+            
+            for b in range(len(x_orig)):
+                for c in range(len(cond[b])):
+                    mes = topk_average(8 * cond[b][c] - 7 * uncond[b][c])
+                    result[b][c] = (x_orig[b][c] - uncond[b][c]) + ((x_orig[b][c] - cond[b][c]) - (x_orig[b][c] - uncond[b][c])) * 8 * (cond_scale / 10) / mes
+
+            prev_cond   = cond
+            prev_uncond = uncond
+            return result
+    
         def uncond_zero(args):
-            nonlocal prev_cond
-            if args["cond_scale"] > 1:
-                print(f" CFG too high! You may be infering a negative for nothing!")
+            nonlocal prev_cond, prev_uncond
+
             cond   = args["cond_denoised"]
             x_orig = args["input"]
             sigma  = args["sigma"][0].item()
             first_step = True
+            
             if sigma <= 1:
                 return x_orig - cond
+            
             if sigma < (sigma_max - 1):
                 first_step = False
 
@@ -80,7 +110,7 @@ class uncondZeroNode:
             return result
 
         m = model.clone()
-        m.set_model_sampler_cfg_function(uncond_zero)
+        m.set_model_sampler_cfg_function(cfg_or_zero_wrapper)
         return (m, )
 
 def sub_neg_to_pos(a, b, uncond_strength):
@@ -92,7 +122,7 @@ def sub_neg_to_pos(a, b, uncond_strength):
     return a, res
 
 # While this may look weird, among 26 different going from thoughtful to complete nonsense, this gave sharper results.
-def post_cond_out(a, b, c, strength):
+def post_cond_out_wrapped(a, b, c, strength):
     if torch.equal(a, c) or torch.equal(b, c):
         return a, b
     
@@ -109,6 +139,13 @@ def post_cond_out(a, b, c, strength):
     b, _ = sub_neg_to_pos(b, res_b, strength)
     return a, b
 
+def post_cond_out(a, b, c, strength):
+    for x in range(floor(strength)):
+        a, b = post_cond_out_wrapped(a,b,c,1)
+    if (strength - floor(strength)) > 0:
+        a, b = post_cond_out_wrapped(a,b,c,strength - floor(strength))
+    return a, b
+
 class cond_combine_pos_neg:
     def __init__(self):
         pass
@@ -119,7 +156,7 @@ class cond_combine_pos_neg:
                 "positive_conditioning": ("CONDITIONING", ),
                 "negative_conditioning": ("CONDITIONING", ),
                 "empty_conditioning": ("CONDITIONING",),
-                "strength": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.1}),
+                "strength": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 2.0, "step": 0.1}),
             }
         }
     FUNCTION = "exec"
