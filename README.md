@@ -34,7 +34,7 @@ To connect like a normal model patch. Generally right after the model loader.
 - "pre_scale": How strong will the effect be.
   - Recommanded: 1 for sde/ancestral samplers, 1.5 if you want to use something like dpmpp2m.
  
-IF THE CFG SCALE IS AT 1 OR IF THERE IS NOT NEGATIVE (using the ConditioningSetTimestepRange node):
+IF THE CFG SCALE IS AT 1 OR IF THERE IS NO NEGATIVE (using the ConditioningSetTimestepRange node):
 - does what is described above
   
 ELSE:
